@@ -16,6 +16,40 @@
       }
     });
   }
+  document.querySelectorAll("[data-filter-group]").forEach(group => {
+    const kind = group.dataset.filterGroup;
+    const buttons = [...group.querySelectorAll("[data-filter]")];
+    const items = [...document.querySelectorAll(`[data-filter-items="${kind}"] [data-category]`)];
+    const sections = [...document.querySelectorAll(`[data-filter-content="${kind}"]`)];
+    const empty = document.querySelector(`[data-filter-empty="${kind}"]`);
+    buttons.forEach(button => button.addEventListener("click", () => {
+      const filter = button.dataset.filter;
+      buttons.forEach(item => {
+        const active = item === button;
+        item.classList.toggle("active", active);
+        item.setAttribute("aria-pressed", String(active));
+      });
+      if (items.length) {
+        let visibleCount = 0;
+        items.forEach(item => {
+          const visible = filter === "all" || item.dataset.category.split(/\s+/).includes(filter);
+          item.hidden = !visible;
+          if (visible) visibleCount += 1;
+        });
+        if (empty) {
+          empty.hidden = visibleCount > 0;
+          empty.textContent = visibleCount ? "" : `No ${button.textContent.trim().toLowerCase()} listed yet.`;
+        }
+      }
+      if (sections.length) {
+        sections.forEach(section => { section.hidden = filter !== "all"; });
+        if (empty) {
+          empty.hidden = filter === "all";
+          empty.textContent = filter === "all" ? "" : `No ${button.textContent.trim().toLowerCase()} listed yet.`;
+        }
+      }
+    }));
+  });
   const countdown = document.querySelector("[data-countdown]");
   if (countdown) {
     const target = Date.parse(countdown.dataset.target);
