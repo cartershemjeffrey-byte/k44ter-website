@@ -51,11 +51,11 @@
     }));
   });
   document.querySelectorAll("[data-audio-player]").forEach(player => {
-    const audio = player.querySelector("audio"), button = player.querySelector(".audio-play"), symbol = player.querySelector(".play-symbol"), time = player.querySelector(".player-time"), progress = player.querySelector(".audio-progress"), fill = progress.querySelector("span");
+    const audio = player.querySelector("audio"), button = player.querySelector(".audio-play"), time = player.querySelector(".player-time"), progress = player.querySelector(".audio-progress"), fill = progress.querySelector("span");
     const fmt = value => { if (!Number.isFinite(value)) return "0:00"; const n = Math.floor(value); return Math.floor(n/60)+":"+String(n%60).padStart(2,"0"); };
     const update = () => { const d = Number.isFinite(audio.duration) ? audio.duration : 0; time.textContent = fmt(audio.currentTime)+" / "+fmt(d); fill.style.width = d ? (audio.currentTime/d*100)+"%" : "0%"; };
     button.addEventListener("click", async () => { if (audio.paused) { document.querySelectorAll("[data-audio-player] audio").forEach(other => { if(other!==audio) other.pause(); }); try { await audio.play(); } catch { button.setAttribute("aria-label","Unable to play audio"); } } else audio.pause(); });
-    audio.addEventListener("play",()=>{symbol.textContent="Ⅱ";button.setAttribute("aria-label","Pause audio");}); audio.addEventListener("pause",()=>{symbol.textContent="▶";button.setAttribute("aria-label","Play audio");}); audio.addEventListener("ended",()=>{symbol.textContent="▶";button.setAttribute("aria-label","Play audio");audio.currentTime=0;update();});
+    audio.addEventListener("play",()=>{button.classList.add("is-playing");button.setAttribute("aria-label","Pause audio");}); audio.addEventListener("pause",()=>{button.classList.remove("is-playing");button.setAttribute("aria-label","Play audio");}); audio.addEventListener("ended",()=>{button.classList.remove("is-playing");button.setAttribute("aria-label","Play audio");audio.currentTime=0;update();});
     audio.addEventListener("timeupdate",update); audio.addEventListener("loadedmetadata",update); progress.addEventListener("click",event=>{if(!Number.isFinite(audio.duration))return;const b=progress.getBoundingClientRect();audio.currentTime=Math.max(0,Math.min(1,(event.clientX-b.left)/b.width))*audio.duration;}); update();
   });
   const countdown = document.querySelector("[data-countdown]");
