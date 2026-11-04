@@ -21,3 +21,5 @@
 @media(max-width:760px){.music-preview-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 14px}.music-preview-grid .music-art-link{max-width:185px}.music-preview-grid .compact-player{max-width:165px}.music-preview-grid .waveform{height:19px}.music-preview-grid .player-time{font-size:7px;min-width:54px}}
 
 .placeholder-grid.three.music-preview-grid{grid-template-columns:repeat(4,minmax(0,1fr))}@media(max-width:760px){.placeholder-grid.three.music-preview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.placeholder-grid.three.music-preview-grid{max-width:1120px;margin-inline:auto}.music-preview-grid .music-art-link{max-width:205px}.music-preview-grid .compact-player{max-width:150px}@media(max-width:760px){.placeholder-grid.three.music-preview-grid{max-width:none;width:100%}.music-preview-grid .music-art-link{max-width:190px}.music-preview-grid .compact-player{max-width:165px}}
