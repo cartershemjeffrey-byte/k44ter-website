@@ -16,6 +16,26 @@
       }
     });
   }
+  const countdown = document.querySelector("[data-countdown]");
+  if (countdown) {
+    const target = Date.parse(countdown.dataset.target);
+    const fields = {
+      days: countdown.querySelector("[data-days]"),
+      hours: countdown.querySelector("[data-hours]"),
+      minutes: countdown.querySelector("[data-minutes]"),
+      seconds: countdown.querySelector("[data-seconds]")
+    };
+    const updateCountdown = () => {
+      const remaining = Math.max(0, target - Date.now());
+      const totalSeconds = Math.floor(remaining / 1000);
+      fields.days.textContent = String(Math.floor(totalSeconds / 86400));
+      fields.hours.textContent = String(Math.floor((totalSeconds % 86400) / 3600)).padStart(2, "0");
+      fields.minutes.textContent = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, "0");
+      fields.seconds.textContent = String(totalSeconds % 60).padStart(2, "0");
+    };
+    updateCountdown();
+    window.setInterval(updateCountdown, 1000);
+  }
   const file = location.pathname.split("/").pop() || "index.html";
   const active = file === "index.html" ? "home" : file.replace(".html", "");
   document.querySelectorAll(".primary-nav a").forEach(link => {
