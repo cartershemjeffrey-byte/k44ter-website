@@ -70,3 +70,4 @@ a.button,button.button,.video-preview .button,.about-links .button,.button.disab
 .upcoming-project-card{grid-template-columns:minmax(0,320px) minmax(120px,1fr);align-items:center}.upcoming-project-card img{width:100%;max-width:320px;aspect-ratio:1;object-fit:cover}.upcoming-project-card .upcoming-description{margin:12px 0 0;color:#c5c7ce;font-size:11px;line-height:1.7;letter-spacing:.08em}
 @media(max-width:900px){.upcoming-project-card{grid-template-columns:minmax(0,280px) minmax(120px,1fr)}.upcoming-project-card img{max-width:280px}}
 @media(max-width:640px){.about-feature .about-art.has-artist-photo{height:300px;aspect-ratio:auto}.about-feature .about-art.has-artist-photo img{position:absolute}.upcoming-project-card{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr)}.upcoming-project-card img{max-width:none}}
+.contact-emblem span{display:none!important}
