@@ -38,7 +38,7 @@
         });
         if (empty) {
           empty.hidden = visibleCount > 0;
-          empty.textContent = visibleCount ? "" : `No ${button.textContent.trim().toLowerCase()} listed yet.`;
+          empty.textContent = visibleCount ? "" : kind === "merch" ? `${button.textContent.trim()} COMING SOON` : `No ${button.textContent.trim().toLowerCase()} listed yet.`;
         }
       }
       if (sections.length) {
