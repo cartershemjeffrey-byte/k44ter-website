@@ -84,3 +84,27 @@
     if (link.dataset.page === active) link.setAttribute("aria-current", "page");
   });
 })();
+
+// Switch product mockups between front and back without enabling checkout.
+document.querySelectorAll('[data-merch-product]').forEach(product => {
+  const front = product.querySelector('[data-merch-front]');
+  const back = product.querySelector('[data-merch-back]');
+  const toggle = product.querySelector('[data-merch-toggle]');
+  const label = product.querySelector('[data-merch-label]');
+  const controls = [...product.querySelectorAll('[data-merch-side]')];
+  const name = product.dataset.productName || 'product';
+  const setSide = side => {
+    const showingBack = side === 'back';
+    front.hidden = showingBack;
+    back.hidden = !showingBack;
+    toggle.setAttribute('aria-label', `Show ${showingBack ? 'front' : 'back'} of ${name}`);
+    label.textContent = showingBack ? 'BACK VIEW · CLICK TO SEE FRONT' : 'FRONT VIEW · CLICK TO SEE BACK';
+    controls.forEach(control => {
+      const active = control.dataset.merchSide === side;
+      control.classList.toggle('active', active);
+      control.setAttribute('aria-pressed', String(active));
+    });
+  };
+  controls.forEach(control => control.addEventListener('click', () => setSide(control.dataset.merchSide)));
+  toggle.addEventListener('click', () => setSide(front.hidden ? 'front' : 'back'));
+});
