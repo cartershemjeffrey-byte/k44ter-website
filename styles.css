@@ -48,3 +48,6 @@ a.button,button.button,.video-preview .button,.about-links .button,.button.disab
 
 /* Artist supplied portrait for the About page */
 .about-art.has-artist-photo{width:100%;max-height:620px;min-height:0;aspect-ratio:4/5;align-self:center;background:#050506;border:1px solid #777;box-shadow:0 0 22px #ffffff12}.about-art.has-artist-photo:before,.about-art.has-artist-photo:after{display:none}.about-art.has-artist-photo img{width:100%;height:100%;object-fit:cover;object-position:center center;opacity:1}.about-art.has-artist-photo span{display:none}@media(max-width:640px){.about-art.has-artist-photo{width:100%;max-height:none;aspect-ratio:4/5;min-height:0}}
+
+/* Keep legacy decorative crosses off the artist portrait */
+.about-feature .about-art.has-artist-photo:before,.about-feature .about-art.has-artist-photo:after{content:none!important;display:none!important}.about-feature .about-art.has-artist-photo{width:100%;max-height:620px;min-height:0;aspect-ratio:4/5;align-self:center;background:#050506;border:1px solid #777;box-shadow:0 0 22px #ffffff12}.about-feature .about-art.has-artist-photo img{width:100%;height:100%;object-fit:cover;object-position:center center;opacity:1}
