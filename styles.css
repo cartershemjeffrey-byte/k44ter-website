@@ -71,3 +71,7 @@ a.button,button.button,.video-preview .button,.about-links .button,.button.disab
 @media(max-width:900px){.upcoming-project-card{grid-template-columns:minmax(0,280px) minmax(120px,1fr)}.upcoming-project-card img{max-width:280px}}
 @media(max-width:640px){.about-feature .about-art.has-artist-photo{height:300px;aspect-ratio:auto}.about-feature .about-art.has-artist-photo img{position:absolute}.upcoming-project-card{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr)}.upcoming-project-card img{max-width:none}}
 .contact-emblem span{display:none!important}
+/* User-supplied video playback */
+.home-video-embed{display:block;width:45%;max-width:360px;aspect-ratio:16/9;object-fit:cover;flex:0 0 auto;background:#050506;border:1px solid #777}
+.featured-video-embed{display:block;width:100%;height:100%;aspect-ratio:16/9;object-fit:contain;background:#050506}
+@media(max-width:640px){.home-video-embed{width:43%;max-width:none}}
